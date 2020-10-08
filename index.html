@@ -24,23 +24,27 @@ UV Index is tricky, don't prioritize -->
             <div class="sidebar-sticky-md d-none d-lg-block pt-3">
               <h4 class="d-flex justify-content-between align-items-center px-3 mb-4 text-dark">Search for a City:</h4>
               <div class="input-group pl-3 mb-3">
-                <input type="text" class="form-control" placeholder="Philadelphia" aria-label="Recipient's username">
+                <input type="text" class="form-control" placeholder="Philadelphia" aria-label="City Select" id="cityText">
                 <div class="input-group-append">
-                  <button id= "citSearch" class="btn btn-primary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                  <button id= "citySearch" class="btn btn-primary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
                 </div>
               </div>
               <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                 <span>Previous Locations</span>
               </h6>
-              <ul id="Previous searched locations" class="nav flex-column mb-2">
+              <ul id="searchedLocs" class="nav flex-column mb-2">
                   <!--This is where buttons should be prepended to-->
               </ul>
             </div>
           </nav>
           <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
             <div id="weatherToday" class="mt-3 jumbotron">
-              <h1></h1>
-              <ul style="list-style: none;">
+                <ul style="list-style: none;">
+                  <div>
+                    <h1 id="cityName" style="display:inline"></h1>
+                    <img id="iconToday" class="pb-4">
+                  </div>
+                  <hr>
                 <li id="tempToday" class="pb-2">Temperature: </li>
                 <li id="humidToday" class="py-2">Humidity: </li>
                 <li id="windToday" class="py-2">Wind Speed: </li>
@@ -52,53 +56,53 @@ UV Index is tricky, don't prioritize -->
             <div id="weatherToday" class="jumbotron bg-light">
               <h3 class="pb-2" style="margin-top:-20px">5-Day Forecast:</h3>
               <div class="row">
-                <div class="col">
-                  <div class="h-100 card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="my-2 col">
+                  <div class="h-100 card text-white bg-info mb-3" style="width: 15rem;">
                     <div class="card-body">
-                      <h5 class="card-title" id="dateOne"></h5>
-                      <img id="iconOne" src="">
-                      <p class="card-text" id="tempOne">Temp: </p>
-                      <p class="card-text" id="humOnr">Humidity: </p>
+                      <h5 class="card-title" id="date1"></h5>
+                      <img id="icon1">
+                      <p class="card-text" id="temp1">Temp: </p>
+                      <p class="card-text" id="hum1">Humidity: </p>
                     </div>
                   </div>
                 </div>
-                <div class="col">
-                  <div class="h-100 card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="my-2 col">
+                  <div class="h-100 card text-white bg-info mb-3" style="width: 15em;">
                     <div class="card-body">
-                      <h5 class="card-title" id="dateTwo"></h5>
-                      <img id="iconTwo" src="">
-                      <p class="card-text" id="tempTwo">Temp: </p>
-                      <p class="card-text" id="humTwo">Humidity: </p>  
+                      <h5 class="card-title" id="date2"></h5>
+                      <img id="icon2">
+                      <p class="card-text" id="temp2">Temp: </p>
+                      <p class="card-text" id="hum2">Humidity: </p>  
                     </div>
                   </div>
                 </div>
-                <div class="col">
-                  <div class="h-100 card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="my-2 col">
+                  <div class="h-100 card text-white bg-info mb-3" style="width: 15rem;">
                     <div class="card-body">
-                      <h5 class="card-title" id="dateThree"></h5>
-                      <img id="iconThree" src="">
-                      <p class="card-text" id="tempThree">Temp: </p>
-                      <p class="card-text" id="humThree">Humidity: </p>  
+                      <h5 class="card-title" id="date3"></h5>
+                      <img id="icon3">
+                      <p class="card-text" id="temp3">Temp: </p>
+                      <p class="card-text" id="hum3">Humidity: </p>  
                     </div>
                   </div>
                 </div>
-                <div class="col">
-                  <div class="h-100 card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="my-2 col">
+                  <div class="h-100 card text-white bg-info mb-3" style="width: 15rem;">
                     <div class="card-body">
-                      <h5 class="card-title" id="dateFour"></h5>
-                      <img id="iconFour" src="">
-                      <p class="card-text" id="tempFour">Temp: </p>
-                      <p class="card-text" id="humFour">Humidity: </p>
+                      <h5 class="card-title" id="date4"></h5>
+                      <img id="icon4">
+                      <p class="card-text" id="temp4">Temp: </p>
+                      <p class="card-text" id="hum4">Humidity: </p>
                     </div>
                   </div>
                 </div>
-                <div class="col">
-                  <div class="h-100 card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="my-2 col">
+                  <div class="h-100 card text-white bg-info mb-3" style="width: 15rem;">
                     <div class="card-body">
-                      <h5 class="card-title" id="dateFive"></h5>
-                      <img id="iconFive" src="">
-                      <p class="card-text" id="tempFive">Temp: </p>
-                      <p class="card-text" id="humFive">Humidity: </p>
+                      <h5 class="card-title" id="date5"></h5>
+                      <img id="icon5">
+                      <p class="card-text" id="temp5">Temp: </p>
+                      <p class="card-text" id="hum5">Humidity: </p>
                     </div>
                   </div>
                 </div>
@@ -111,10 +115,11 @@ UV Index is tricky, don't prioritize -->
       </div>
 
     <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->>
     <script src="https://kit.fontawesome.com/8ee669ad83.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
   </body>
 </html>
