@@ -1,46 +1,64 @@
-let tempToday = $("#tempToday").val();
+let defaultCity = localStorage.getItem("default");
+console.log(defaultCity);
+let defaultPrint = false
+window.onload = function(){
+    if (!defaultPrint){
+        printWeather(defaultCity);
+        defaultPrint = true;
+    }
+}
+
 
 $("#citySearch").on("click", function(){
+    let input = $("#cityText").val();
+    console.log(input);
+    printWeather(input);
+});
+$(document).on("click", "#historyBtn", function(){
+    
+    let input = $(this).text();
 
-let citySelect = $("#cityText").val();
-let weatherObj = "https://cors-anywhere.herokuapp.com/" + "api.openweathermap.org/data/2.5/weather?q=" + citySelect + "&units=imperial&appid=537cd7ed53d185cdc11391970f874bc7";
-// prependBtn();
+    printWeather(input);
+});
 
-// function prependBtn(){
-//     console.log(citySelect);
-//     let newBtn = $("<button/>",
-//     {
-//         text: citySelect,
-//         id: "historyBtn"
-//      });
+function prependBtn(input){
+    
+    let newBtn = $("<button/>",
+    {
+        text: input,
+        id: "historyBtn",
+        class: "my-1 btn btn-info"
+     });
      
+     $("#searchedLocs").prepend(newBtn);
+}
 
-//      $("#searchedLocs").append(newBtn);
-
-
-
-
-// }
+function printWeather(input){
+console.log(input);
+let weatherObj = "https://cors-anywhere.herokuapp.com/" + "api.openweathermap.org/data/2.5/weather?q=" + input + "&units=imperial&appid=537cd7ed53d185cdc11391970f874bc7";
 
 $.ajax({
     url: weatherObj,
     method: "GET"
 }).then(function(toDay){
-    
  console.log(toDay);
+
  $("#cityName").text(toDay.name)
  $("#tempToday").text("Temperature: " + Math.round(toDay.main.temp) + "° F"); 
  $("#humidToday").text("Humidity: " + toDay.main.humidity + "%");
  $("#windToday").text("Wind Speed: " + Math.round(toDay.wind.speed) + " mi/h");
  
- 
+ //Now that we've verified this is a place, we can prepend it as searched location button
+ prependBtn(toDay.name);
+ localStorage.removeItem("default")
+ localStorage.setItem("default", toDay.name);
+
  let forecastOBJ = "https://cors-anywhere.herokuapp.com/" + "api.openweathermap.org/data/2.5/onecall?lat=" + toDay.coord.lat + "&lon=" + toDay.coord.lon + "&exclude=minutely,hourly,alerts&units=imperial&appid=537cd7ed53d185cdc11391970f874bc7";
 
  $.ajax({
      url: forecastOBJ,
      method: "GET"
  }).then(function(foreCast){
-    loading = false;
     console.log(foreCast);
     let now = new Date();
 
@@ -59,7 +77,7 @@ $.ajax({
 
 });
 
-});
+}
 
 
 
